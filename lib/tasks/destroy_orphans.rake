@@ -21,13 +21,12 @@ namespace :destroy_orphans do
       end
     end
 
-
     location_ids = Location.all.pluck(:id)
 
     assignment_location_ids = Assignment.all.pluck(:location_id)
 
     @count2 = 0
-    
+
     assignment_location_ids.each do |location_id|
       if !location_ids.include? location_id
         assignment_to_destroy = Assignment.find_by(location_id: location_id)
